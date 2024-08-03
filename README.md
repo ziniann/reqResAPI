@@ -39,7 +39,7 @@ I decided to divide the tests into two different classes:
 - `LoginTest` 
 - `UsersTest`
 
-##Test/Resources/JsonSchemas
+## Test/Resources/JsonSchemas
 
 JSON schema for validating the single user API response:
 
