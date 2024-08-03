@@ -20,12 +20,30 @@ The following technologies are utilized:
 
 Later, I added a JSON schema validator dependency as I felt that some of the responses should be validated by schema.
 
-## BaseTest
+## Project Structure
 
-Then I created the `BaseTest` class in the main package to set up common configurations and to initialize `baseURI` there.
+The project is organized into the following packages:
 
-## Tests
+## Main/Model
 
-I decided to divide the tests into two different classes: `LoginTest` and `UsersTest`.
+I've created Java class representing the `User` model.
 
-I felt like I would need to have a separate `User` object, so I created it in the main package as well.
+## Test/BaseTest
+
+Then I've created the `BaseTest` class in the test package to set up common configurations and to initialize `baseURI` there.
+
+## Test/Tests
+
+I decided to divide the tests into two different classes: 
+
+- `LoginTest` 
+- `UsersTest`
+
+##Test/Resources/JsonSchemas
+
+JSON schema for validating the single user API response:
+
+- `usersList` 
+- `singleUser`
+
+# 
