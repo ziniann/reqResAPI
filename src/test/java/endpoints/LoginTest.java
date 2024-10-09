@@ -1,7 +1,6 @@
 package endpoints;
 
 import apiBase.BaseTest;
-import io.qameta.allure.TmsLink;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
@@ -15,7 +14,6 @@ public class LoginTest extends BaseTest {
     String path = "/api/login";
 
     @Test(description = "Logging in successfully")
-    @TmsLink("04")
     public void testLoginSuccessful() {
         String loginPayload = "{ \"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\" }";
 
@@ -32,7 +30,6 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(description = "Logging in unsuccessful")
-    @TmsLink("05")
     public void testLoginUnsuccessful() {
         String loginPayload = "{ \"email\": \"peter@klaven\" }";
 

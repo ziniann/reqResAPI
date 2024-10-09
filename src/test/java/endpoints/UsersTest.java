@@ -2,25 +2,24 @@ package endpoints;
 
 import apiBase.BaseTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.qameta.allure.TmsLink;
 import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import model.User;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import static io.restassured.RestAssured.given;
+import static org.testng.AssertJUnit.fail;
 
 public class UsersTest extends BaseTest {
 
-    String path = "/api/users";
+    String path = "/api/users/";
+    int userId = 2;
 
     @Test(description = "Getting the Users")
-    @TmsLink("01")
     public void testListUsers() {
-        Response response = given()
+        given()
                 .contentType(ContentType.JSON)
                 .when()
                 .get(path + "?page=2")
@@ -31,12 +30,11 @@ public class UsersTest extends BaseTest {
     }
 
     @Test(description = "Getting a single user")
-    @TmsLink("02")
     public void testSingleUser() {
-        Response response = given()
+        given()
                 .contentType(ContentType.JSON)
                 .when()
-                .get(path + "/2")
+                .get(path + userId)
                 .then()
                 .statusCode(200)
                 .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("jsonSchemas/user.json"))
@@ -44,7 +42,6 @@ public class UsersTest extends BaseTest {
     }
 
     @Test(description = "Creating the User")
-    @TmsLink("03")
     public void testCreateUser() throws Exception {
         SoftAssert softAssert = new SoftAssert();
         User newUser = new User("Zina", "QE");
@@ -68,4 +65,26 @@ public class UsersTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(description = "Deleting the User of given id")
+    public void deleteUserTest() throws Exception {
+
+
+        int statusCode = given()
+                .when()
+                .delete(path + userId)
+                .then()
+                .extract().response()
+                .getStatusCode();
+
+        if (statusCode == 204) {
+            System.out.println("User deleted successfully.");
+        } else if (statusCode == 404) {
+            System.out.println("User not found.");
+        } else {
+            fail("Unexpected status code: " + statusCode);
+        }
+    }
 }
+
+
+
