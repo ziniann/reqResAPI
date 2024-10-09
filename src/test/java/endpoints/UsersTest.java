@@ -66,7 +66,7 @@ public class UsersTest extends BaseTest {
     }
 
     @Test(description = "Deleting the User of given id")
-    public void deleteUserTest() throws Exception {
+    public void deleteUserTest()  {
 
 
         int statusCode = given()
