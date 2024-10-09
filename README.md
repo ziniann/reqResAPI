@@ -2,48 +2,39 @@
 
 ## Overview
 
-The test task involves creating a test automation framework to cover the following scenarios for the REST API [ReqRes](https://reqres.in/):
+The test task involves creating a test automation framework to cover the following scenarios for the REST API [ReqRes](https://reqres.in/): using RestAssured and responce validation.
 
-1. List Users
-2. Single User
-3. Create User
-4. Login Successful
-5. Login Unsuccessful
+## Requirements
 
-The following technologies are utilized:
-- Java
-- RestAssured
+- Java 8+
 - Maven
-- TestNG/JUnit
-- Jackson
-- Allure
+- TestNG
+- RestAssured
 
-Later, I added a JSON schema validator dependency as I felt that some of the responses should be validated by schema.
+## Dependencies
 
-## Project Structure
+All required dependencies are managed in the `pom.xml` file.
 
-The project is organized into the following packages:
+### Key Libraries
+- **Rest Assured** for testing RESTful APIs
+- **TestNG** for testing
+- **Jackson Databind** for converting Java objects to and from JSON
+- **JSON Schema Validator** for validating JSON responses against a JSON Schema
 
-## Main/Model
+## Setup Instructions
 
-I've created Java class representing the `User` model.
-
-## Test/BaseTest
-
-Then I've created the `BaseTest` class in the test package to set up common configurations and to initialize `baseURI` there.
-
-## Test/Tests
-
-I decided to divide the tests into two different classes: 
-
-- `LoginTest` 
-- `UsersTest`
-
-## Test/Resources/JsonSchemas
-
-JSON schema for validating the single user API response:
-
-- `usersList` 
-- `singleUser`
-
-# 
+1. Import the project:
+    ```
+    git clone https://github.com/ziniann/reqResAPI.git
+    ```
+    ```
+    cd reqResAPI
+    ```
+2. Build the project using Maven:
+    ```
+    mvn clean install
+    ```
+3. Run the test suite:
+    ```
+    mvn test
+    ```
